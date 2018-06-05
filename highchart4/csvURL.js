@@ -21,9 +21,9 @@ Highcharts.chart('container', {
       //https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium4.csv
      //csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium5.csv',
     // csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium8.csv',
-    // csvURL: 'http://localhost:8000/git/loadpp.csv',
-    //  csvURL: 'http://localhost:8000/git/AcharaAmmonium8.csv',
-      csvURL: 'http://localhost:8000/git/AcharaAll.csv',
+     csvURL: 'http://localhost:8000/git/loadpp.csv',
+      //csvURL: 'http://localhost:8000/git/test.csv',
+      //csvURL: 'http://localhost:8000/git/AcharaAll.csv',
        // enablePolling: false,
        // dataRefreshRate: 1
     },
@@ -68,5 +68,6 @@ Highcharts.chart('container', {
       //      color: "#FFEBEE"
       //  }]
    // }
+  
 });
 
