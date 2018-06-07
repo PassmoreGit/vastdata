@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+  <title>Vega Lite Bar Chart</title>
+  <meta charset="utf-8">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+
+  <style media="screen">
+    /* Add space between Vega-Embed links  */
+    .vega-actions a {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>VAST 2018 MC2</h1>
+
+  <h2>Chemicals</h2>
+  <!-- Container for the visualization -->
+  <div id="vis"></div>
+
+  <script>
+  // Assign the specification to a local variable vlSpec.
+  var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+      "url": "http://localhost:8000/git/data.csv"
+    },
+    "width": 800,
+    "mark": "tick",
+    "encoding": {
+      "y": {
+        "field": "measure", 
+        "type": "nominal",
+        "axis": {
+          "title": "Chemicals",
+          "titleFontSize": 20,
+          "labelFontSize": 12
+        }
+      },
+      "x": {
+        "field": "value", 
+        "type": "quantitative",
+        // "scale": {"type": "log"}
+      }
+    }
+  };
+  // Embed the visualization in the container with id `vis`
+  vegaEmbed("#vis", vlSpec);
+  </script>
+</body>
+</html>
