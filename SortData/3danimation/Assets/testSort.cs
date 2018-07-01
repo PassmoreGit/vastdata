@@ -15,8 +15,8 @@ public class testSort : MonoBehaviour {
     List<Mc2Record> animRecords = new List<Mc2Record>();
     int frame = 0;
     public GameObject glyph;
-    Mc2Record test = new Mc2Record("12", "23.3", "boobsri", "12-may-2006", "zinc");
-    int g = 99;
+   
+ 
      void Start()
     {
         try
@@ -40,7 +40,7 @@ public class testSort : MonoBehaviour {
             int y = 222;
         }
         // Debug.Log("There were  lines." + counter);
-        prepareAnimateBoonsriWatertemp("Water temperature");
+        prepareAnimateBoonsriWatertemp("Zinc");
     }
     // Use this for initialization
     void Start1 () {
@@ -123,8 +123,10 @@ public class testSort : MonoBehaviour {
  
 	void Update () {
         animateBoonsriWatertemp();
-
+        string dat = animRecords[frame].date.ToShortDateString();
+        transform.GetChild(0).GetComponent<TextMesh>().text = dat;
     }
+
     void animateBoonsriWatertemp()
     { Vector3 tmp = new Vector3(animRecords[frame].value, animRecords[frame].value, animRecords[frame].value);
         glyph.transform.localScale=tmp;
