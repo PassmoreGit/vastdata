@@ -1,0 +1,106 @@
+"1,2,3-Trichlorobenzene",0.001,0.0253,FALSE
+Acenaphthene,0.003,0.03126,FALSE
+AGOC-3A,0,226.904,FALSE
+Alachlor,0,0.86,FALSE
+Aldrin,0,0.501,FALSE
+alpha-Hexachlorocyclohexane,0,0.529,FALSE
+Aluminium,0,790,FALSE
+Ammonium,0,14.869,FALSE
+Anionic active surfactants,0,0.706,FALSE
+Anthracene,0,0.02402,FALSE
+AOX,0,54,FALSE
+Arsenic,0,17.138,FALSE
+Atrazine,0,1.04,FALSE
+Barium,12,78,FALSE
+Benzo(a)anthracene,0,0.00612,FALSE
+Benzo(a)pyrene,0,0.00892,FALSE
+Benzo(b)fluoranthene,0,0.028,FALSE
+"Benzo(g,h,i)perylene",0.001,0.004,FALSE
+Benzo(k)fluoranthene,0,0.00874,FALSE
+beta-Hexaxchlorocyclohexane,0,0.461,FALSE
+Bicarbonates,34.1,392.1,FALSE
+Biochemical Oxygen,0,74.71,FALSE
+Boron,22,43,FALSE
+Cadmium,0,148.3,FALSE
+Calcium,1,153.2,FALSE
+Carbonates,6,140.3,FALSE
+Cesium,0,1,FALSE
+Chemical Oxygen Demand (Cr),0,431.09,FALSE
+Chemical Oxygen Demand (Mn),0,42.7,FALSE
+Chlorides,0,477,FALSE
+Chlorodinine,0,0.436,FALSE
+Chromium,0,161.27,FALSE
+Copper,0,1123.13,FALSE
+Cyanides,0,4.44,FALSE
+Dieldrin,0,0.612,FALSE
+Dissolved organic carbon,2.78,8.12,FALSE
+Dissolved oxygen,0,15.96,FALSE
+Dissolved silicates,0,21.57,FALSE
+Endosulfan (alpha),0,0.923,FALSE
+Endosulfan (beta),0,0.632,FALSE
+Endrin,0,1.114,FALSE
+Fecal coliforms,0,790,FALSE
+Fecal streptococci ,0,330,FALSE
+Fluoranthene,0.001,0.00852,FALSE
+gamma-Hexachlorocyclohexane,0,1.03,FALSE
+Heptachlor,0,0.121,FALSE
+Heptachloroepoxide,0,0.236,FALSE
+Hexachlorobenzene,0.001,0.02,FALSE
+"Indeno(1,2,3-c,d)pyrene",0,0.134,FALSE
+Inorganic nitrogen,0.15,21.063,FALSE
+Iron,0,37959.28,FALSE
+Isodrin,0.001,0.025,FALSE
+Lead,0,222.94,FALSE
+Macrozoobenthos,0,47.21,FALSE
+Magnesium,2.2,89.1,FALSE
+Manganese,0,1910,FALSE
+Mercury,0,1.27,FALSE
+Methoxychlor,0.005,0.137,FALSE
+Methylosmoline,0.001,144.991,FALSE
+Metolachlor,0,0.671,FALSE
+Naphthalene,0.002,0.05922,FALSE
+Nickel,0,109.32,FALSE
+Nitrates,0,17.3,FALSE
+Nitrites,0,2.052,FALSE
+Organic nitrogen,0,3.998,FALSE
+Orthophosphate-phosphorus,0,1.75,FALSE
+Oxygen saturation,13.5,199.75,FALSE
+"p,p-DDD",0,0.976,FALSE
+"p,p-DDE",0,0.301,FALSE
+"p,p-DDT",0,2.67,FALSE
+PAHs,3.93,40.9,FALSE
+PCB 101,0.001,0.00756,FALSE
+PCB 138,0.001,0.00295,FALSE
+PCB 153,0.001,0.002,FALSE
+PCB 180,0.001,0.00806,FALSE
+PCB 28,0.001,0.012,FALSE
+PCB 52,0.001,0.002,FALSE
+Pentachlorobenzene,0.001,0.004,FALSE
+Petroleum hydrocarbons,0,35.3,FALSE
+Phenanthrene,0.003,0.005,FALSE
+Potassium,0.6,28,FALSE
+Pyrene,0.001,0.00622,FALSE
+Selenium,0.027,3.5,FALSE
+Silica (SiO2),0.4,24.6,FALSE
+Simazine,0,0.742,FALSE
+Sodium,5.2,290.9,FALSE
+Sulfides,0,0.1,FALSE
+Sulphates,0,230.6,FALSE
+Tetrachloromethane,0.025,3.311,FALSE
+Total coliforms,0,16090,FALSE
+Total dissolved phosphorus,0.008,0.57,FALSE
+Total dissolved salts,0,2330,FALSE
+Total extractable matter,0,25,FALSE
+Total hardness,3.06,492.799988,FALSE
+Total nitrogen,0,22.52,FALSE
+Total organic carbon,1.001,33.4,FALSE
+Total phosphorus,0,4.07,FALSE
+Water temperature,0,36.4,FALSE
+Zinc,0,1054,FALSE
+"1,2,4-Trichlorobenzene",0.001,0.001,TRUE
+Acenaphthylene,0.004,0.004,TRUE
+Berilium,0,0,TRUE
+Chrysene,0.003,0.003,TRUE
+Fluorene,0.005,0.005,TRUE
+PCB 118,0.002,0.002,TRUE
+Trifluralin,0.1,0.1,TRUE

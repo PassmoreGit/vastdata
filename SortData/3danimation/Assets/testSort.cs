@@ -16,7 +16,7 @@ public class testSort : MonoBehaviour {
     int frame = 0;
     public GameObject glyph;
    
- 
+ // this reads in serialised data
      void Start()
     {
         try
@@ -26,13 +26,6 @@ public class testSort : MonoBehaviour {
                 BinaryFormatter bin = new BinaryFormatter();
 
                  records = (List<Mc2Record>)bin.Deserialize(stream);
-                //foreach (Lizard lizard in lizards2)
-                //{
-                //    Console.WriteLine("{0}, {1}, {2}",
-                //        lizard.Type,
-                //        lizard.Number,
-                //        lizard.Healthy);
-                //}
             }
         }
         catch (IOException)
@@ -40,17 +33,69 @@ public class testSort : MonoBehaviour {
             int y = 222;
         }
         // Debug.Log("There were  lines." + counter);
-        prepareAnimateBoonsriWatertemp("Zinc");
+        prepareAnimateBoonsriMeasure("Water temperature");
     }
-    // Use this for initialization
-    void Start1 () {
+ 
+	
+	// Update is called once per frame
+ 
+	void Update () {
+        animateBoonsriWatertemp();
+        string dat = animRecords[frame].date.ToShortDateString();
+        transform.GetChild(0).GetComponent<TextMesh>().text = dat;
+    }
+
+    void animateBoonsriWatertemp()
+    { Vector3 tmp = new Vector3(animRecords[frame].value, animRecords[frame].value, animRecords[frame].value);
+        glyph.transform.localScale=tmp;
+        frame++;
+        Debug.Log(frame);
+        if (frame >= animRecords.Count) frame = 0;
+
+
+    }
+    void prepareAnimateBoonsriMeasure(string str)
+    {
+      
+       //var filteredRecords = records.Where(p.location => location));
+       int t=55;
+        IEnumerable<Mc2Record> BoonsriQuery =
+            from record in records
+            where (record.location=="Boonsri")&&(record.measure==str)
+            select record;
+        foreach (Mc2Record r in BoonsriQuery)
+        {
+            animRecords.Add(r);
+                     //  Debug.Log(r.location.ToString()+r.measure.ToString());
+
+        }
+
+       
+        int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+
+        var lowNums =
+            from n in numbers
+            where n < 5
+            select n;
+
+        Console.WriteLine("Numbers < 5:");
+        foreach (var x in lowNums)
+        {
+            Console.WriteLine(x);
+        }
+        int j = 88;
+    }
+
+    // St this to Start to read in the csv file and write out the data as a binary list of struct Mc2Record
+    void Start1()
+    {
         //date range 11-jan-98 - 31-dec-16
 
 
 
         // Read the file and display it line by line.  
-    // while   System.IO.StreamReader file = new System.IO.StreamReader(@"e:\test.csv");
-     //while   line = file.ReadLine(); // read past header
+        // while   System.IO.StreamReader file = new System.IO.StreamReader(@"e:\test.csv");
+        //while   line = file.ReadLine(); // read past header
         int strl1, strl2, strl3;
         string t1, t2, t3;
         // E:\git\vastdata\SortData\3danimation\Assets is location on home machine
@@ -97,13 +142,13 @@ public class testSort : MonoBehaviour {
                 }
                 records.Add(new Mc2Record(row[0], row[1], row[2], row[3], row[4]));
                 if (counter % 10000 == 0) Debug.Log(counter);
-              
+
             }
             counter++;
         }
 
-      //  file.Close();
-        Debug.Log("There were  lines."+ counter);
+        //  file.Close();
+        Debug.Log("There were  lines." + counter);
         try
         {
             using (Stream stream = File.Open("data.bin", FileMode.Create))
@@ -117,55 +162,6 @@ public class testSort : MonoBehaviour {
         }
         int g = 33;
 
-    }
-	
-	// Update is called once per frame
- 
-	void Update () {
-        animateBoonsriWatertemp();
-        string dat = animRecords[frame].date.ToShortDateString();
-        transform.GetChild(0).GetComponent<TextMesh>().text = dat;
-    }
-
-    void animateBoonsriWatertemp()
-    { Vector3 tmp = new Vector3(animRecords[frame].value, animRecords[frame].value, animRecords[frame].value);
-        glyph.transform.localScale=tmp;
-        frame++;
-        Debug.Log(frame);
-        if (frame >= animRecords.Count) frame = 0;
-
-
-    }
-    void prepareAnimateBoonsriWatertemp(string str)
-    {
-      
-       //var filteredRecords = records.Where(p.location => location));
-       int t=55;
-        IEnumerable<Mc2Record> BoonsriQuery =
-            from record in records
-            where (record.location=="Boonsri")&&(record.measure==str)
-            select record;
-        foreach (Mc2Record r in BoonsriQuery)
-        {
-            animRecords.Add(r);
-                     //  Debug.Log(r.location.ToString()+r.measure.ToString());
-
-        }
-
-       
-        int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-
-        var lowNums =
-            from n in numbers
-            where n < 5
-            select n;
-
-        Console.WriteLine("Numbers < 5:");
-        foreach (var x in lowNums)
-        {
-            Console.WriteLine(x);
-        }
-        int j = 88;
     }
 }
 
