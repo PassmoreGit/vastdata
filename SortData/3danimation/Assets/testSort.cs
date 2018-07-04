@@ -12,12 +12,16 @@ public class testSort : MonoBehaviour {
     string[] row;
     List<Mc2Record> records = new List<Mc2Record>();
 
-    List<Mc2Record> animRecords = new List<Mc2Record>();
+   // List<Mc2Record> animRecords = new List<Mc2Record>();
+    List<List<Mc2Record>> recordsList = new List<List<Mc2Record>>(); 
     int frame = 0;
-    public GameObject glyph;
-   
- // this reads in serialised data
-     void Start()
+    public GameObject[] siteobjects = new GameObject [10];// boonsriObject,kohsoomObject;
+    List<string> siteNames = new List<string>();
+    List<string> measureNames = new List<string>();
+    DateTime startDate = new DateTime(1998, 1, 1); //1/1/98
+    DateTime endDate = new DateTime(2016, 12, 31); //31/12/16
+    // this reads in serialised data
+    void Start()
     {
         try
         {
@@ -33,57 +37,146 @@ public class testSort : MonoBehaviour {
             int y = 222;
         }
         // Debug.Log("There were  lines." + counter);
-        prepareAnimateBoonsriMeasure("Water temperature");
+        // prepareAnimateBoonsriMeasure("Water temperature");
+        //  List<Mc2Record> tmp = new List<Mc2Record>();
+        //   recordsList.Add(tmp);
+        //recordsList.Add(new List<Mc2Record>());
+        //getListForLocationForMeasure(out recordsList[0], "Boonsri", "Water temperature");
+        string measure = "Water temperature";
+        List<Mc2Record> tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure( tmp1, "Boonsri", measure );
+        tmp1=quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure( tmp1, "Kohsoom", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        int k = 10;
     }
- 
-	
-	// Update is called once per frame
- 
-	void Update () {
-        animateBoonsriWatertemp();
-        string dat = animRecords[frame].date.ToShortDateString();
-        transform.GetChild(0).GetComponent<TextMesh>().text = dat;
+
+
+    // Update is called once per frame
+    int timeSLow = 0;
+    int timeSLowLimit = 10;
+    void Update () {
+        if (timeSLow == timeSLowLimit)
+        {
+            animateBoonsriWatertemp();
+            string dat = recordsList[0][frame].date.ToShortDateString();
+            transform.GetChild(0).GetComponent<TextMesh>().text = dat;
+            timeSLow = 0;
+        }
+        else
+        timeSLow++;
+    }
+    Vector3 tmpVec;
+
+    List<Mc2Record> quantiseListByDate(List<Mc2Record> result1,string frequency)
+    {
+
+      //  result1 = new List<Mc2Record>();
+        List<Mc2Record> result2 = new List<Mc2Record>();
+        if (frequency == "month")
+        {
+            for (int i = 1998; i < 2017; i++)
+            {
+                for (int j = 1; j < 13; j++)
+                {
+                   
+                    Mc2Record tmp = new Mc2Record();
+                    tmp.date = new DateTime(i, j, 1);
+                    tmp.value=aggregateListValues(i, j, result1);
+                    tmp.location = result1[0].location;
+                    tmp.measure = result1[0].measure;
+                    result2.Add(tmp);
+                }
+            }
+        }
+        return result2;
+    }
+    public float aggregateListValues(int i, int j, List<Mc2Record> list)
+    {
+       // float result = 0;
+        float max = 0;
+     //   float min = 1000000.0;
+        List<Mc2Record> result1 = new List<Mc2Record>();
+        IEnumerable<Mc2Record> monthRecordsQuery =
+              from record in list
+              where (record.date.Year == i) && (record.date.Month == j)
+              select record;
+        foreach (Mc2Record r in monthRecordsQuery)
+        {
+            result1.Add(r);
+            if (r.value > max) max = r.value;
+            //  Debug.Log(r.location.ToString()+r.measure.ToString());
+        }      
+        return max; 
     }
 
     void animateBoonsriWatertemp()
-    { Vector3 tmp = new Vector3(animRecords[frame].value, animRecords[frame].value, animRecords[frame].value);
-        glyph.transform.localScale=tmp;
+    {
+        int index1 = 0;
+        tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
+        siteobjects[index1].transform.localScale= tmpVec;
+        index1 = 1;
+        tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
+        siteobjects[index1].transform.localScale = tmpVec;
         frame++;
-        Debug.Log(frame);
-        if (frame >= animRecords.Count) frame = 0;
+      //  Debug.Log(frame);
+        if (frame >= recordsList[1].Count) frame = 0;
 
 
     }
-    void prepareAnimateBoonsriMeasure(string str)
-    {
+    //void prepareAnimateBoonsriMeasure(string str)
+    //{
       
-       //var filteredRecords = records.Where(p.location => location));
-       int t=55;
-        IEnumerable<Mc2Record> BoonsriQuery =
-            from record in records
-            where (record.location=="Boonsri")&&(record.measure==str)
-            select record;
-        foreach (Mc2Record r in BoonsriQuery)
-        {
-            animRecords.Add(r);
-                     //  Debug.Log(r.location.ToString()+r.measure.ToString());
+    //   //var filteredRecords = records.Where(p.location => location));
+   
+    //    IEnumerable<Mc2Record> BoonsriQuery =
+    //        from record in records
+    //        where (record.location=="Boonsri")&&(record.measure==str)
+    //        select record;
+    //    foreach (Mc2Record r in BoonsriQuery)
+    //    {
+    //        animRecords.Add(r);
+    //                 //  Debug.Log(r.location.ToString()+r.measure.ToString());
 
+    //    }
+
+    //}
+    public void getListForLocationForMeasure( List<Mc2Record> result1, string location, string measure)
+    {
+        //  List<Mc2Record> result1 = new List<Mc2Record>();
+        //  List<Mc2Record> result = new List<Mc2Record>;
+     //   result1 = new List<Mc2Record>();
+        IEnumerable <Mc2Record> LocationMeasureQuery =
+              from record in records
+              where (record.location == location) && (record.measure == measure)
+              select record;
+        foreach (Mc2Record r in LocationMeasureQuery)
+        {
+            result1.Add(r);
+            //  Debug.Log(r.location.ToString()+r.measure.ToString());
         }
 
-       
-        int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+       // return result1;
+    }
+    public List<Mc2Record> getListForLocationForMeasure1(string location, string measure)
+    {
+        List<Mc2Record> result1 = new List<Mc2Record>();
+        //  List<Mc2Record> result = new List<Mc2Record>;
 
-        var lowNums =
-            from n in numbers
-            where n < 5
-            select n;
-
-        Console.WriteLine("Numbers < 5:");
-        foreach (var x in lowNums)
+        IEnumerable<Mc2Record> LocationMeasureQuery =
+              from record in records
+              where (record.location == location) && (record.measure == measure)
+              select record;
+        foreach (Mc2Record r in LocationMeasureQuery)
         {
-            Console.WriteLine(x);
+            result1.Add(r);
+            //  Debug.Log(r.location.ToString()+r.measure.ToString());
         }
-        int j = 88;
+
+        return result1;
     }
 
     // St this to Start to read in the csv file and write out the data as a binary list of struct Mc2Record
