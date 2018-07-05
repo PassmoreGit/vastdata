@@ -17,9 +17,12 @@ public class testSort : MonoBehaviour {
     int frame = 0;
     public GameObject[] siteobjects = new GameObject [10];// boonsriObject,kohsoomObject;
     List<string> siteNames = new List<string>();
-    List<string> measureNames = new List<string>();
+   // List<string> measureNames = new List<string>();
     DateTime startDate = new DateTime(1998, 1, 1); //1/1/98
     DateTime endDate = new DateTime(2016, 12, 31); //31/12/16
+    string measure = "Water temperature";
+    int measureIndex = 103;
+
     // this reads in serialised data
     void Start()
     {
@@ -42,27 +45,63 @@ public class testSort : MonoBehaviour {
         //   recordsList.Add(tmp);
         //recordsList.Add(new List<Mc2Record>());
         //getListForLocationForMeasure(out recordsList[0], "Boonsri", "Water temperature");
-        string measure = "Water temperature";
+        prepareBinnedData(measureNames[measureIndex]);
+     //   prepareBinnedData(measure);
+    }
+
+void prepareBinnedData(string measure)
+    {
+
         List<Mc2Record> tmp1 = new List<Mc2Record>();
-        getListForLocationForMeasure( tmp1, "Boonsri", measure );
-        tmp1=quantiseListByDate(tmp1, "month");
+        getListForLocationForMeasure(tmp1, "Boonsri", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
         recordsList.Add(tmp1);
         tmp1 = new List<Mc2Record>();
-        getListForLocationForMeasure( tmp1, "Kohsoom", measure);
+        getListForLocationForMeasure(tmp1, "Kohsoom", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Achara", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Busarakhan", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Somchair", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Chai", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Decha", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Tansanee", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Kannika", measure);
+        tmp1 = quantiseListByDate(tmp1, "month");
+        recordsList.Add(tmp1);
+        tmp1 = new List<Mc2Record>();
+        getListForLocationForMeasure(tmp1, "Sakda", measure);
         tmp1 = quantiseListByDate(tmp1, "month");
         recordsList.Add(tmp1);
         int k = 10;
     }
-
-
     // Update is called once per frame
     int timeSLow = 0;
     int timeSLowLimit = 10;
     void Update () {
         if (timeSLow == timeSLowLimit)
         {
-            animateBoonsriWatertemp();
-            string dat = recordsList[0][frame].date.ToShortDateString();
+            animateCurrentMeasure();
+            string dat = recordsList[0][frame].date.ToShortDateString()+" "+ measureNames[measureIndex];
             transform.GetChild(0).GetComponent<TextMesh>().text = dat;
             timeSLow = 0;
         }
@@ -113,18 +152,27 @@ public class testSort : MonoBehaviour {
         return max; 
     }
 
-    void animateBoonsriWatertemp()
+    void animateCurrentMeasure()
     {
-        int index1 = 0;
-        tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
-        siteobjects[index1].transform.localScale= tmpVec;
-        index1 = 1;
-        tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
-        siteobjects[index1].transform.localScale = tmpVec;
+        //int index1 = 0;
+        for (int index1 = 0; index1 < 10; index1++)
+        {
+            tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
+            siteobjects[index1].transform.localScale = tmpVec;
+        }
+        //index1 = 1;
+        //tmpVec = new Vector3(recordsList[index1][frame].value, recordsList[index1][frame].value, recordsList[index1][frame].value);
+        //siteobjects[index1].transform.localScale = tmpVec;
         frame++;
-      //  Debug.Log(frame);
-        if (frame >= recordsList[1].Count) frame = 0;
-
+        //  Debug.Log(frame);
+        if (frame >= recordsList[1].Count)
+        {
+            measureIndex++;
+            if (measureIndex == 105) measureIndex = 103;
+            frame = 0;
+           recordsList = new List<List<Mc2Record>>();
+            prepareBinnedData(measureNames[measureIndex]);
+        }
 
     }
     //void prepareAnimateBoonsriMeasure(string str)
@@ -256,7 +304,115 @@ public class testSort : MonoBehaviour {
         int g = 33;
 
     }
+    List<string> measureNames = new List<string>(new string[] {
+"1,2,4-Trichlorobenzene",
+"Acenaphthene",
+"Acenaphthylene",
+"AGOC-3A",
+"Alachlor",
+"Aldrin",
+"alpha-Hexachlorocyclohexane",
+"Aluminium",
+"Ammonium",
+"Anionic active surfactants",
+"Anthracene",
+"AOX",
+"Arsenic",
+"Atrazine",
+"Barium",
+"Benzo(a)anthracene",
+"Benzo(a)pyrene",
+"Benzo(b)fluoranthene",
+"Benzo(g,h,i)perylene",
+"Benzo(k)fluoranthene",
+"Berilium",
+"beta-Hexaxchlorocyclohexane",
+"Bicarbonates",
+"Biochemical Oxygen",
+"Boron",
+"Cadmium",
+"Calcium",
+"Carbonates",
+"Cesium",
+"Chemical Oxygen Demand (Cr)",
+"Chemical Oxygen Demand (Mn)",
+"Chlorides",
+"Chlorodinine",
+"Chromium",
+"Chrysene",
+"Copper",
+"Cyanides",
+"Dieldrin",
+"Dissolved organic carbon",
+"Dissolved oxygen",
+"Dissolved silicates",
+"Endosulfan (alpha)",
+"Endosulfan (beta)",
+"Endrin",
+"Fecal coliforms",
+"Fecal streptococci ",
+"Fluoranthene",
+"Fluorene",
+"gamma-Hexachlorocyclohexane",
+"Heptachlor",
+"Heptachloroepoxide",
+"Hexachlorobenzene",
+"Indeno(1,2,3-c,d)pyrene",
+"Inorganic nitrogen",
+"Iron",
+"Isodrin",
+"Lead",
+"Macrozoobenthos",
+"Magnesium",
+"Manganese",
+"Mercury",
+"Methoxychlor",
+"Methylosmoline",
+"Metolachlor",
+"Naphthalene",
+"Nickel",
+"Nitrates",
+"Nitrites",
+"Organic nitrogen",
+"Orthophosphate-phosphorus",
+"Oxygen saturation",
+"p,p-DDD",
+"p,p-DDE",
+"p,p-DDT",
+"PAHs",
+"PCB 101",
+"PCB 118",
+"PCB 138",
+"PCB 153",
+"PCB 180",
+"PCB 28",
+"PCB 52",
+"Pentachlorobenzene",
+"Petroleum hydrocarbons",
+"Phenanthrene",
+"Potassium",
+"Pyrene",
+"Selenium",
+"Silica (SiO2)",
+"Simazine",
+"Sodium",
+"Sulfides",
+"Sulphates",
+"Tetrachloromethane",
+"Total coliforms",
+"Total dissolved phosphorus",
+"Total dissolved salts",
+"Total extractable matter",
+"Total hardness",
+"Total nitrogen",
+"Total organic carbon",
+"Total phosphorus",
+"Trifluralin",
+"Water temperature",
+"Zinc"});
+
 }
+
 
 [Serializable()]
 public struct Mc2Record 
