@@ -18,7 +18,7 @@ Highcharts.chart('container', {
        // csvURL: 'https://raw.githubusercontent.com/PassmoreGit/vastdata/master/AcharaAmmonium2.csv',
      //  csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium3.csv',
       // csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium4.csv',
-      //https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium4.csv
+      //https://cdn.jsdelivr.net/gh/PassmoreGit/vastdata/AcharaAmmonium4.csv
      //csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium5.csv',
     // csvURL: 'https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium8.csv',
      csvURL: 'http://localhost:8000/git/loadpp.csv',
