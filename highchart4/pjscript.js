@@ -48,10 +48,10 @@ function readTextFile(file)
 }
 
 //readTextFile("file:///e:/VAST2018/highchart/file.txt");
-//readTextFile("https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json");
-//let txt=readTextFile("https://rawgit.com/PassmoreGit/vastdata/master/Boonsong%20Lekagul%20waterways%20readings.csv");
-//var txt=readTextFile(//"https://rawgit.com/PassmoreGit/vastdata/master/Boonsong%20Lekagul%20waterways%20readings.csv");
-var txt=readTextFile("https://rawgit.com/PassmoreGit/vastdata/master/AcharaAmmonium.csv");
+//readTextFile("https://cdn.jsdelivr.net/gh/highcharts/highcharts@057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json");
+//let txt=readTextFile("https://cdn.jsdelivr.net/gh/PassmoreGit/vastdata/Boonsong%20Lekagul%20waterways%20readings.csv");
+//var txt=readTextFile(//"https://cdn.jsdelivr.net/gh/PassmoreGit/vastdata/Boonsong%20Lekagul%20waterways%20readings.csv");
+var txt=readTextFile("https://cdn.jsdelivr.net/gh/PassmoreGit/vastdata/AcharaAmmonium.csv");
 
 
 var test=mytext;
